@@ -17,7 +17,7 @@ sys.path.append(src_path)
 from tensorflow.python.keras.regularizers import l2
 from tensorflow.keras.initializers import Zeros
 from layers.attention_sequence_pooling_layer import AttentionSequencePoolingLayer
-from study.multi_head_attention import MultiHeadAttention
+from layers.self_multi_head_attention import SelfMultiHeadAttention
 from layers.dynamic_multi_rnn import DynamicMultiRNN
 from utils.common_func import concat_func
 from layers.user_attention import UserAttention
@@ -127,7 +127,7 @@ class SeqDeepMatch(tf.keras.Model):
                                            num_residual_layers=rnn_num_res,
                                            dropout_rate=dropout_rate)([short_emb_input, short_seq_len])
 
-        short_att_output = MultiHeadAttention(num_units=units, head_num=num_head)([short_rnn_output, short_seq_len])
+        short_att_output = SelfMultiHeadAttention(num_units=units, head_num=num_head)([short_rnn_output, short_seq_len])
 
         # (batch_size, 1, units)
         short_output = UserAttention(num_units=units, activation=dnn_activation, use_res=True,
