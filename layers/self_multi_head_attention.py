@@ -13,7 +13,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.python.keras.layers import Layer
 from deepctr.layers.normalization import LayerNormalization
-from tensorflow.python.keras.initializers import TruncatedNormal
+from tensorflow.keras.initializers import TruncatedNormal
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
